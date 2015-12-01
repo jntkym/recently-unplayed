@@ -12,8 +12,8 @@ tell application "iTunes"
   end repeat
   delete every track of playlist "Recently Unplayed"
 
-  repeat with i from 1 to length of songs_list
-    set pd to played date of track i
+  repeat with i from 1 to (get count of tracks) 
+    set pd to (played date of track i)
     set end of sngs to {name of track i, (date string of (pd))}
   end repeat
                                             
