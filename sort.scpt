@@ -3,9 +3,6 @@ repeat with i from 1 to length of lst
   display dialog item 2 of (item i of lst)
 end repeat
 
-addItem of __ on lst at index-1
-delItem of __ o
-
 set myList to {"3", "5", "1", "0", "2"}
 set ListRef to a reference to myList
 set num to length of ListRef
