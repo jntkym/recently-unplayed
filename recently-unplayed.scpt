@@ -1,11 +1,10 @@
-(* todo: 日時の値がない時はどうするか *)
-
-property MonthText : {January, February, March, April, May, June, July, August, September, October, November, December}
+property MonthText : {"jan", "feb", "mar", "april", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"}
 
 on MonthToNum(MONTH)
   repeat with i from 1 to 12
-    if item i of MonthText = MONTH then return i
+    if item i of MonthText = MONTH as text then return i
   end repeat
+  return i
 end MonthToNum
 
 on NumToTxt(NUM)
@@ -38,11 +37,15 @@ end tell
 
 (* 日付をYYYYMMDD記法にする *)
 repeat with i from 1 to length of songList
-  set dateInfo to item 2 of (item i of songList)
-  set Y to (year of dateInfo) as text
-  set M to NumToTxt(MonthToNum(month of dateInfo))
-  set D to NumToTxt(day of dateInfo)
-  set item 2 of (item i of songList) to Y & M & D
+  if item 2 of (item i of songList) = missing value then
+    set item 2 of (item i of songList) to "00000000"
+  else
+    set dateInfo to item 2 of (item i of songList)
+    set Y to (year of dateInfo) as text
+    set M to NumToTxt(MonthToNum(month of dateInfo))
+    set D to NumToTxt(day of dateInfo)
+    set item 2 of (item i of songList) to Y & M & D
+  end if
 end repeat
 
 (* 日付順にバブルソート *)
