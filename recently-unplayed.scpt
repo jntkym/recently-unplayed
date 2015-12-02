@@ -16,7 +16,7 @@ tell application "iTunes"
 
 (* playlistの作成と初期化 *)
 set all_playlists to the name of every user playlist
-repeat with i from 1 to length of all_playlists
+repeat with i from 1 to (length of all_playlists) + 1
   if i > length of all_playlists then
     set thePlaylist to make new playlist with properties {name:"Recently Unplayed"}
   else
