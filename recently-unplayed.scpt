@@ -1,5 +1,3 @@
-(* todo: 同じ曲名がある場合の識別はどうする? *)
-
 property MonthText : {"jan", "feb", "mar", "april", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"}
 
 on MonthToNum(MONTH)
@@ -32,21 +30,21 @@ delete every track of playlist "Recently Unplayed"
 (* すべてのtrack情報の取得 *)
 repeat with i from 1 to (get count of tracks) 
   set pd to (played date of track i)
-  set end of songList to {name of track i, pd}
+  set end of songList to {name of track i, artist of track i, pd}
 end repeat
 
 end tell 
 
 (* 日付をYYYYMMDD記法にする *)
 repeat with i from 1 to length of songList
-  if item 2 of (item i of songList) = missing value then
-    set item 2 of (item i of songList) to "00000000"
+  if item 3 of (item i of songList) = missing value then
+    set item 3 of (item i of songList) to "00000000"
   else
-    set dateInfo to item 2 of (item i of songList)
+    set dateInfo to item 3 of (item i of songList)
     set Y to (year of dateInfo) as text
     set M to NumToTxt(MonthToNum(month of dateInfo))
     set D to NumToTxt(day of dateInfo)
-    set item 2 of (item i of songList) to Y & M & D
+    set item 3 of (item i of songList) to Y & M & D
   end if
 end repeat
 
@@ -58,7 +56,7 @@ repeat
   repeat with i from 1 to num - 1
     set leftPos to item i of listRef
     set rightPos to item (i + 1) of listRef
-    if item 2 of leftPos > item 2 of rightPos then
+    if item 3 of leftPos > item 3 of rightPos then
       set item i of listRef to rightPos
       set item (i + 1) of listRef to leftPos
       set flg to true
@@ -79,7 +77,7 @@ set currentDate to Y & M & D
 (* 3ヶ月以上聴いていない曲のみでリストを作成 *)
 set recentlyUnplayedList to {}
 repeat with i from 1 to length of listRef
-  if item 2 of (item i of listRef) < currentDate - 300 then
+  if item 3 of (item i of listRef) < currentDate - 300 then
     set end of recentlyUnplayedList to item i of listRef
   end if
 end repeat
