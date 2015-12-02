@@ -1,3 +1,5 @@
+(* bug: textに変換できないものがある *)
+
 property MonthText : {"jan", "feb", "mar", "april", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"}
 
 on MonthToNum(MONTH)
