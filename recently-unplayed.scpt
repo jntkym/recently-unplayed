@@ -83,3 +83,8 @@ repeat with i from 1 to length of listRef
 end repeat
 
 (* iTunes上にプレイリストを作成 *)
+tell application "iTunes"
+repeat with i from 1 to length of recentlyUnplayedList
+  add (get location of every track whose name = item 1 of (item i of recentlyUnplayedList) and artist = item 2 of (item i of recentlyUnplayedList) and enabled = true) to playlist "Recently Unplayed"
+end repeat
+end tell
