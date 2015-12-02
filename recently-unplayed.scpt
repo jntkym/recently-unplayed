@@ -1,3 +1,5 @@
+(* todo: 同じ曲名がある場合の識別はどうする? *)
+
 property MonthText : {"jan", "feb", "mar", "april", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"}
 
 on MonthToNum(MONTH)
@@ -67,8 +69,19 @@ repeat
     exit repeat
   end if
 end repeat
-display dialog listRef
 
-(* item 2が""のものあるいは5ヶ月以上前に再生されたリストを取り出す*)
+(* 現在の日時を取得 *)
+set Y to year of (current date) as text
+set M to NumToTxt(MonthToNum(month of (current date)))
+set D to NumToTxt(day of (current date))
+set currentDate to Y & M & D
 
-(* リストのitem 1をiterateしてプレイリストに追加する *)
+(* 3ヶ月以上聴いていない曲のみでリストを作成 *)
+set recentlyUnplayedList to {}
+repeat with i from 1 to length of listRef
+  if item 2 of (item i of listRef) < currentDate - 300 then
+    set end of recentlyUnplayedList to item i of listRef
+  end if
+end repeat
+
+(* iTunes上にプレイリストを作成 *)
