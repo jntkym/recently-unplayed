@@ -1,4 +1,4 @@
-Recenntly-unplayed
+#Recenntly-unplayed
 iTunes(Mac)で「最近聴いていない曲(Recently Unplayed)」を作るスクリプトです
 ##使い方
 - 基本は~/Library/iTunes/iTunes\ Plug-insに置いてiTunes上から実行するだけです
