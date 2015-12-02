@@ -1,5 +1,5 @@
 #Recently-unplayed
-iTunes(Mac)で「最近聴いていない曲(Recently Unplayed)」を作るスクリプトです
+iTunes(Mac)で「最近聴いていない曲(Recently Unplayed)」を作るスクリプトです   
 a script generating a "Recently Unplayed" playlist on your iTunes
 ##使い方
 - 基本は~/Library/iTunes/iTunes\ Plug-insに置いてiTunes上から実行するだけです
