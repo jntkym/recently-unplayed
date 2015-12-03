@@ -1,3 +1,6 @@
+(* todo: 高速化 *)
+(* fix: iTunes側から実装した際のエラー *)
+
 property MonthText : {"jan", "feb", "mar", "april", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"}
 
 on MonthToNum(MONTH)
